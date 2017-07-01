@@ -35,8 +35,9 @@ export default class resourceController {
   }
   static update(req,res){
     let _resource = req.body;
-    resourceDAO.update(_resource)
-      .then(()=> res.status(200).end)
+    let _id = _resource.id
+    resourceDAO.update(_id,_resource)
+      .then((resource)=> res.status(200).json(resource))
       .catch((error=>res.status(400).json(error)))
   }
 }

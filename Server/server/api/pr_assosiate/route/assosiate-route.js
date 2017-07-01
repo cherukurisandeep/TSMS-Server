@@ -10,6 +10,6 @@ export default class assosiateRoutes {
     router
       .route('/tsms/assosiate/:id')
       .delete(assosiateController.removeById)
-    .get(assosiateController.getById);
+      .get(assosiateController.getById);
   }
 }

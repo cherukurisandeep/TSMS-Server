@@ -41,11 +41,33 @@ export default class assosiateDAO{
   }
   //.find({where: {$or: [{id: _id}]}})
   static getById(id){
+    //console.log(id);
     return new Promise((resolve,reject)=>{
       console.log("getbyId")
       model.pr_assosiation
         .findAll({where :{project_id: id}})
-        .then(ass =>{
+        .then(assosiate =>{
+          resolve(assosiate)
+        },(error)=>{
+          reject(error);
+        })
+    })
+  }
+  static removeById(id){
+    return new Promise((resolve,reject)=>{
+      model.pr_assosiation
+        .find({where : {resource_id: id}})
+        .then(assosiate => {
+          if (!assosiate) {
+            return reject(404);
+          }
+          return assosiate
+            .destroy()
+            .then(() => {
+              resolve(204);
+            }, (error) => reject(error));
+        },(error)=>{
+          reject(error);
         })
     })
   }

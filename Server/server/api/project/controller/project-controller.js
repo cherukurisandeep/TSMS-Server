@@ -34,7 +34,7 @@ export default class projectController {
         res.status(200).json(projects).send(projects);
       }
       else{
-        res.sent('Data not Found');
+        //res.sent('Data not Found');
         return res.status(404);
       }
     })
