@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
           }
         })
         resource.belongsToMany(models.project,{
-          through : "pr_assosiation",
+          through : "pr_association",
           as : 'projects',
           foreignKey :{
             name :'resource_id',

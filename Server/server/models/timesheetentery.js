@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         timeSheetEntery.belongsTo(models.pr_assosiation,{
-          as : 'pr_assosiation',
+          as : 'pr_association',
           foreignKey :{
             name : "pr_id",
             allowNull : false

@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         project.belongsToMany(models.resource,{
-          through: "pr_assosiation",
+          through: "pr_association",
           as : "resources",
           foreignKey :{
             name : 'project_id',
