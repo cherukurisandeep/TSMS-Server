@@ -8,13 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      t_id:{
-        type :Sequelize.INTEGER,
-        onDelete : "CASCADE",
+      resource_id:{
+        type: Sequelize.DATE,
         references :{
-          model : 'timeSheetEnteries',
+          model : 'resource',
           key : 'id'
-        }
+        },
+        allowNull : false,
+        onDelete : 'CASCADE'
       },
       startdate: {
         type: Sequelize.DATE

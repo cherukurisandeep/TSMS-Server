@@ -11,11 +11,18 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         project.belongsToMany(models.resource,{
-          through: "pr_association",
+          through: "pr_assosiation",
           as : "resources",
           foreignKey :{
             name : 'project_id',
             allowNull : false
+          }
+        })
+        project.hasMany(models.timeSheetEntery,{
+          as : "timeSheetEnteries",
+          foreignKey :{
+            name : 'project_id',
+            allowNull: false
           }
         })
 

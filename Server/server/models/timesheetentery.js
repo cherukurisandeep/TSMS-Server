@@ -6,11 +6,11 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        timeSheetEntery.belongsTo(models.pr_assosiation,{
-          as : 'pr_association',
+        timeSheetEntery.hasMany(models.project,{
+          as : 'projects',
           foreignKey :{
-            name : "pr_id",
-            allowNull : false
+            name : "project_id",
+            allowNull: false
           }
         })
         timeSheetEntery.hasMany(models.timeSheet,{

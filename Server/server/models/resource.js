@@ -22,11 +22,18 @@ module.exports = function(sequelize, DataTypes) {
           }
         })
         resource.belongsToMany(models.project,{
-          through : "pr_association",
+          through : "pr_assosiation",
           as : 'projects',
           foreignKey :{
             name :'resource_id',
             allowNull: false
+          }
+        })
+        resource.hasMany(models.timeSheet,{
+          as : 'timeSheets',
+          foreignKey :{
+            name : 'resource_id',
+            allowNull : false
           }
         })
         // associations can be defined here

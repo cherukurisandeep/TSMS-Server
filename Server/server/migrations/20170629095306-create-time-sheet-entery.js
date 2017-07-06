@@ -8,13 +8,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      pr_id :{
+      project_id :{
         type : Sequelize.INTEGER,
         allowNull :false,
         references :{
-          model : 'pr_assosiations',
+          model : 'project',
           key : 'id'
-        }
+        },
+        onDelete : 'CASCADE'
+      },
+      t_id:{
+        type: Sequelize.INTEGER,
+        allowNull : false,
+        references:{
+          model : 'timesheet',
+          key   : 'id'
+        },
+        onDelete:'CASCADE'
       },
       time_date: {
         type: Sequelize.DATE

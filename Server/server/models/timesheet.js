@@ -6,10 +6,10 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        timeSheet.belongsTo(models.timeSheetEntery,{
-          as : 'timeSheetEnteries',
+        timeSheet.belongsTo(models.resource,{
+          as : 'resources',
           foreignKey :{
-            name : 't_id',
+            name : 'resource_id',
             allowNull : false
           }
         })

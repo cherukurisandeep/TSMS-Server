@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var pr_assosiation = sequelize.define('pr_association', {
+  var pr_assosiation = sequelize.define('pr_assosiation', {
   }, {
     tableName :"pr_assosiations",
     underscore : true,
