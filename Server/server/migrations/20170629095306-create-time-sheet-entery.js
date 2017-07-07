@@ -12,16 +12,15 @@ module.exports = {
         type : Sequelize.INTEGER,
         allowNull :false,
         references :{
-          model : 'project',
+          model : 'projects',
           key : 'id'
         },
         onDelete : 'CASCADE'
       },
-      t_id:{
+      timesheetId:{
         type: Sequelize.INTEGER,
-        allowNull : false,
         references:{
-          model : 'timesheet',
+          model : 'timeSheets',
           key   : 'id'
         },
         onDelete:'CASCADE'

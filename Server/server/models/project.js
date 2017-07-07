@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
           }
         })
         project.hasMany(models.timeSheetEntery,{
-          as : "timeSheetEnteries",
+          as : "timeSheetEntery",
           foreignKey :{
             name : 'project_id',
             allowNull: false

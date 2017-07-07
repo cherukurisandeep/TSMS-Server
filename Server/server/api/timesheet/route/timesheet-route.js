@@ -9,6 +9,8 @@ export default class timesheetRoutes {
 
     router
       .route('/tsms/timesheet/:id')
-      .delete(timesheetController.removeById);
+      .delete(timesheetController.removeById)
+      .get(timesheetController.getById);
+
   }
 }

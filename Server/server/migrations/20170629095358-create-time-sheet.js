@@ -9,9 +9,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       resource_id:{
-        type: Sequelize.DATE,
+        type: Sequelize.INTEGER,
         references :{
-          model : 'resource',
+          model : 'resources',
           key : 'id'
         },
         allowNull : false,

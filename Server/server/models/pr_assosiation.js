@@ -22,14 +22,6 @@ module.exports = function(sequelize, DataTypes) {
           },
           onDelete: "CASCADE"
         })
-        pr_assosiation.hasMany(models.timeSheetEntery,{
-          as : "timeSheetEnteries",
-          foreignKey :{
-            name : 'pr_id',
-            allowNull : false
-          }
-
-        })
 
         // associations can be defined here
       }

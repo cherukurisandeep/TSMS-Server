@@ -4,6 +4,8 @@ module.exports = function(sequelize, DataTypes) {
     startdate: DataTypes.DATE,
     enddate: DataTypes.DATE
   }, {
+    tableName : 'timeSheets',
+    underscore : true,
     classMethods: {
       associate: function(models) {
         timeSheet.belongsTo(models.resource,{
@@ -12,6 +14,11 @@ module.exports = function(sequelize, DataTypes) {
             name : 'resource_id',
             allowNull : false
           }
+        })
+        timeSheet.hasMany(models.timeSheetEntery,{
+          as :'timeSheetEnteries',
+          foreignKey : 'timesheetId',
+          sourceKey : 'id'
         })
         // associations can be defined here
       }

@@ -4,21 +4,21 @@ module.exports = function(sequelize, DataTypes) {
     time_date: DataTypes.DATE,
     hours: DataTypes.INTEGER
   }, {
+    tableName : 'timeSheetEnteries',
+    underscore : true,
     classMethods: {
       associate: function(models) {
-        timeSheetEntery.hasMany(models.project,{
+        timeSheetEntery.belongsTo(models.project,{
           as : 'projects',
           foreignKey :{
             name : "project_id",
             allowNull: false
           }
         })
-        timeSheetEntery.hasMany(models.timeSheet,{
+        timeSheetEntery.belongsTo(models.timeSheet,{
           as : 'timeSheets',
-          foreignKey :{
-            name : "t_id",
-            allowNull: false
-          }
+          foreignKey : "timesheetId",
+          targetKey : "id"
         })
         // associations can be defined here
       }

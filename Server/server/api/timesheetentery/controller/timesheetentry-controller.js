@@ -4,7 +4,7 @@ export default class timesheetentryController {
   static getAll(req, res) {
     timesheetentryDAO
       .getAll()
-      .then(timesheetentrys => res.status(200).json(timesheetentrys))
+      .then(timesheetentrys => res.json(timesheetentrys))
       .catch(error => res.status(400).json(error));
   }
 
@@ -13,7 +13,7 @@ export default class timesheetentryController {
 
     timesheetentryDAO
       .createNew(_timesheetentry)
-      .then(timesheetentry => res.status(201).json(timesheetentry))
+      .then(timesheetentry => res.json(timesheetentry))
       .catch(error => res.status(400).json(error));
   }
 

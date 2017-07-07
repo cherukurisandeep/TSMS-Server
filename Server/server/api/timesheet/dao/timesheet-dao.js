@@ -1,52 +1,51 @@
 import mongoose from 'mongoose';
 import Promise from 'bluebird';
-import timesheetSchema from '../model/timesheet-model';
+import model from '../../../models';
 import _ from 'lodash';
 
-timesheetSchema.statics.getAll = () => {
-  return new Promise((resolve, reject) => {
-    let _query = {};
-
-    timesheet
-    .find(_query)
-    .exec(function(err, todos) {
-      err ? reject(err)
-      : resolve(todos);
-    });
-  });
+export default class timesheetDAO{
+  static createNew(reqBody){
+    return new Promise((resolve,reject)=>{
+      console.log("TimeSheet createNew");
+      let _reqBody = reqBody
+      model.timeSheet.create({
+        resource_id : _reqBody.resource_id,
+        startdate   : _reqBody.startdate,
+        enddate     : _reqBody.enddate
+      }).then(timesheet=>{
+        resolve(timesheet)
+      })
+        .catch(error=>{
+          console.log(error)
+          reject("Not Created")
+        })
+    })
+  }
+  static getAll(){
+    return new Promise((resolve,reject)=>{
+      console.log("Time Sheet get all");
+      model.timeSheet.findAll({})
+        .then(timesheet=>{
+          resolve(timesheet)
+        })
+        .catch(error=>{
+          console.log(error)
+          reject(error)
+        })
+    })
+  }
+  static getById(_id){
+    let d = _id
+    return new Promise((resolve,reject)=>{
+      console.log("Time Sheet getBy Id");
+      model.timeSheet.findAll({where:{resource_id:d}})
+        .then(timesheet=>{
+          resolve(timesheet)
+        })
+        .catch(error=>{
+          console.log(error)
+          reject(error)
+        })
+    })
+  }
 }
-
-timesheetSchema.statics.createNew = (timesheet) => {
-    return new Promise((resolve, reject) => {
-      if (!_.isObject(timesheet)) {
-        return reject(new TypeError('Todo is not a valid object.'));
-      }
-
-      var _something = new timesheet(timesheet);
-
-      _something.save(function(err, saved) {
-        err ? reject(err)
-        : resolve(saved);
-      });
-    });
-}
-
-timesheetSchema.statics.removeById = (id) => {
-
-  return new Promise((resolve, reject) => {
-    if (!_.isString(id)) {
-      return reject(new TypeError('Id is not a valid string.'));
-    }
-
-    timesheet
-    .findByIdAndRemove(id)
-    .exec(function(err, deleted) {
-      err ? reject(err)
-      : resolve();
-    });
-  });
-}
-
-const timesheet = mongoose.model('timesheet', timesheetSchema);
-
-export default timesheet;
