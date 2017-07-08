@@ -4,6 +4,33 @@ import model from '../../../models';
 import _ from 'lodash';
 
 export default class assosiateDAO{
+
+  static create(request) {
+    console.log(request)
+    return new Promise((resolve, reject) => {
+      console.log("in Prmise")
+      console.log(request.project_id)
+      model.project.findById(request.project_id).then(projec=>{
+        //console.log(projec)
+        model.resource.findById(request.resource_id).then(reso=>{
+          console.log(reso.dataValues)
+          projec.addResources([reso]).then((result)=>{
+            console.log(result)
+            resolve(result)
+          })
+            .catch(error => {
+              console.log(error)
+            })
+        })
+          .catch(error => {
+            console.log(error)
+          })
+      })
+        .catch(error => {
+          console.log(error)
+        });
+    });
+  }
   static createNew(request) {
     return new Promise((resolve, reject) => {
       console.log('enterd into createnew mrthod in dao')
@@ -71,4 +98,5 @@ export default class assosiateDAO{
         })
     })
   }
+
 }
