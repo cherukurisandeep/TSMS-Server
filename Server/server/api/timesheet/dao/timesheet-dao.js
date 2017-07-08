@@ -8,6 +8,7 @@ export default class timesheetDAO{
     return new Promise((resolve,reject)=>{
       console.log("TimeSheet createNew");
       let _reqBody = reqBody
+      console.log(",,,--->>>",_reqBody)
       model.timeSheet.create({
         resource_id : _reqBody.resource_id,
         startdate   : _reqBody.startdate,

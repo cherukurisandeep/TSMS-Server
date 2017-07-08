@@ -5,10 +5,12 @@ export default class timesheetentryRoutes {
     router
       .route('/tsms/timesheetentry')
       .get(timesheetentryController.getAll)
-      .post(timesheetentryController.createNew);
+      .post(timesheetentryController.createNew)
+      .put(timesheetentryController.update);
 
     router
       .route('/tsms/timesheetentry/:id')
-      .delete(timesheetentryController.removeById);
+      .delete(timesheetentryController.removeById)
+      .get(timesheetentryController.getById);
   }
 }

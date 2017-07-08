@@ -12,14 +12,14 @@ module.exports = function(sequelize, DataTypes) {
           as : 'projects',
           foreignKey :{
             name : "project_id",
-            allowNull: false
+            allowNull : true
           }
-        })
+        });
         timeSheetEntery.belongsTo(models.timeSheet,{
           as : 'timeSheets',
           foreignKey : "timesheetId",
           targetKey : "id"
-        })
+        });
         // associations can be defined here
       }
     }
