@@ -46,7 +46,8 @@ export default class timesheetentryDAO {
       model.timeSheetEntery.findAll({
         where:{timesheetId:id},
         include: [
-          { model: model.project,as:'projects', required: true}
+          {model: model.project,as:'projects'},
+          {model:model.timeSheet, as:'timeSheets',required:true}
         ]
       })
         .then(result=>{

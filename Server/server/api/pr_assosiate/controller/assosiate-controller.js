@@ -40,4 +40,19 @@ export default class assosiateController {
       .then((result)=>res.json(result))
       .catch(error=>res.status(400))
   }
+  static getByIdResource(req,res){
+    let _id = req.params.id
+    assosiateDAO
+      .getByIdResource(_id)
+      .then((result)=>res.json(result))
+      .catch(error=>res.status(400))
+  }
+  static deleteByIds(req,res){
+    let r_id = req.params.r_id
+    let p_id = req.params.p_id
+    assosiateDAO
+      .deleteByIds(r_id,p_id)
+      .then((result)=>res.json())
+      .catch(error => res.status(400))
+  }
 }

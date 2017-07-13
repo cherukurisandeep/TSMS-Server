@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
           as : "timeSheetEntery",
           foreignKey :{
             name : 'project_id',
-            allowNull: false
+            allowNull: true
           }
         })
 

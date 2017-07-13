@@ -13,6 +13,12 @@ export default class assosiateRoutes {
       .get(assosiateController.getById);
     router
       .route('/tsms/assosiates')
-      .post(assosiateController.create)
+      .post(assosiateController.create);
+    router
+      .route('/tsms/assosiates/:id')
+      .get(assosiateController.getByIdResource);
+    router
+      .route('/tsms/project/:p_id/resource/:r_id')
+      .delete(assosiateController.deleteByIds);
   }
 }

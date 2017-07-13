@@ -98,5 +98,41 @@ export default class assosiateDAO{
         })
     })
   }
+  static getByIdResource(id){
+    let _id = id
+    return new Promise((resolve,reject)=>{
+      model.pr_assosiation
+        .findAll({where : {resource_id: _id},
+          include: [
+            {model: model.project,as:'projects'},
+            {model: model.resource, as :'resources'}
+          ]
+        })
+        .then(assosiate=>{
+          resolve(assosiate)
+        },(error)=>{
+          reject(error)
+        })
+
+    })
+
+  }
+  static deleteByIds(r_id,p_id){
+    return new Promise((resolve,reject)=>{
+      model.pr_assosiation
+        .find({where : {$and : [{resource_id : r_id},{project_id:p_id}]}})
+        .then(result=>{
+          if(!result){
+            reject(404)
+          }
+          return result.destroy()
+            .then(()=>{
+            resolve(204)
+            },error=>{
+            reject(error)
+            })
+        })
+    })
+  }
 
 }
