@@ -1,4 +1,6 @@
 'use strict';
+var bcrypt = require('bcrypt-nodejs'),
+SALT_WORK_FACTOR = 10;
 module.exports = function(sequelize, DataTypes) {
   var resource = sequelize.define('resource', {
     firstname: DataTypes.STRING,
@@ -40,5 +42,17 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+  resource.hook('beforeCreate',function (resource,fn) {
+    var salt = bcrypt.genSalt(SALT_WORK_FACTOR, function (err,salt) {
+      console.log(salt)
+      return salt
+    });
+    bcrypt.hash(resource.password,salt,null,function (err,hash) {
+      if(err)
+        return next(err);
+        resource.password=hash;
+        return fn;
+    });
+  })
   return resource;
 };

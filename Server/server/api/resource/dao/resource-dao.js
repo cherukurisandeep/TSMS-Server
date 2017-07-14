@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import Promise from 'bluebird';
 import model from '../../../models';
 import _ from 'lodash';
-
+var passwordHash = require('password-hash');
 export default class resourceDAO{
   static getAll(_query) {
     return new Promise((resolve, reject) => {
@@ -19,6 +19,22 @@ export default class resourceDAO{
         })
     })
   }
+  static getLogin(id,password){
+    return new Promise((resolve,reject)=>{
+      model.resource.find({where : {email : id}})
+        .then(login=>{
+          let access = passwordHash.verify(password,login.password)
+          if(access){
+            resolve(login)
+          }
+          else{
+            reject('Invalid Password')
+          }
+        },error=>{
+          reject(error)
+        })
+    })
+  }
   static createNew(reqBody){
     return new Promise((resolve, reject) => {
       console.log('enterd into createnew mrthod in dao')
@@ -28,7 +44,7 @@ export default class resourceDAO{
         firstname: _reqBody.firstname,
         lastname: _reqBody.lastname,
         email : _reqBody.email,
-        password : _reqBody.password,
+        password : passwordHash.generate(_reqBody.password),
         dob: _reqBody.dob,
         joindate : _reqBody.joindate,
         termdate : _reqBody.termdate,

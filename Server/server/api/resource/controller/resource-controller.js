@@ -40,4 +40,12 @@ export default class resourceController {
       .then((resource)=> res.status(200).json(resource))
       .catch((error=>res.status(400).json(error)))
   }
+  static getLogin(req,res){
+
+    let id = req.params.id
+    let password = req.params.password
+    resourceDAO.getLogin(id,password)
+      .then((resource)=>res.json(resource))
+      .catch((error=>res.status(400).json(error)))
+  }
 }

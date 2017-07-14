@@ -9,7 +9,6 @@ import http2 from "spdy";
 import http from "http"
 import fs from "fs";
 import RoutesConfig from "./config/routes.conf";
-
 import Routes from "./routes/index";
 
 const app = express();
@@ -22,6 +21,7 @@ const opts = {
   key: fs.readFileSync(__dirname + "/cert/server.key"),
   cert: fs.readFileSync(__dirname + "/cert/server.crt")
 }
+
 
 http.createServer(app)
      .listen(PORT, () => {

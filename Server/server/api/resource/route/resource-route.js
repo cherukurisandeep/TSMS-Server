@@ -12,5 +12,8 @@ export default class resourceRoutes {
       .get(resourceController.getById)
       .delete(resourceController.removeById)
       .put(resourceController.update);
+    router
+      .route('/tsms/login/:id/password/:password')
+      .get(resourceController.getLogin);
   }
 }
